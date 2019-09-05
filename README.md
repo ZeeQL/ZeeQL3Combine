@@ -5,7 +5,7 @@
 
 ![Swift5.1](https://img.shields.io/badge/swift-5.1-blue.svg)
 ![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
-![Travis](https://travis-ci.org/ZeeQL/ZeeQL3Combine.svg?branch=develop)
+![Travis](https://travis-ci.org/ZeeQL/ZeeQL3Combine.svg?branch=master)
 
 ZeeQL is a Swift ORM / database access library primarily inspired by EOF,
 and in consequence CoreData. Adding some ActiveRecord ideas.
