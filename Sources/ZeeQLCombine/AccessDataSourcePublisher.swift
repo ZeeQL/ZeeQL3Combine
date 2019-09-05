@@ -7,9 +7,11 @@
 //
 
 #if canImport(Combine)
-import Combine
+
 import class Dispatch.DispatchQueue
 import class Foundation.NSLock
+import ZeeQL
+import Combine
 
 @available(iOS 13, tvOS 13, OSX 10.15, watchOS 6, *)
 internal

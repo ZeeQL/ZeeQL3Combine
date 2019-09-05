@@ -9,6 +9,7 @@
 #if canImport(Combine)
 
 import class  Dispatch.DispatchQueue
+import ZeeQL
 import struct Combine.AnyPublisher
 import class  Combine.Future
 

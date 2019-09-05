@@ -8,6 +8,7 @@
 
 #if canImport(Combine)
 
+import ZeeQL
 import protocol Combine.ObservableObject
 import class    Combine.PassthroughSubject
 
