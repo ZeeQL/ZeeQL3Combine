@@ -5,6 +5,8 @@
 
 ![Swift5.1](https://img.shields.io/badge/swift-5.1-blue.svg)
 ![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
+![iOS](https://img.shields.io/badge/os-iOS-green.svg?style=flat)
+![watchOS](https://img.shields.io/badge/os-watchOS-green.svg?style=flat)
 ![Travis](https://travis-ci.org/ZeeQL/ZeeQL3Combine.svg?branch=master)
 
 ZeeQL is a Swift ORM / database access library primarily inspired by EOF,
