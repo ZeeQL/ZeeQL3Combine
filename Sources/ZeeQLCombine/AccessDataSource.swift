@@ -45,7 +45,40 @@ public extension AccessDataSource {
     }
     .eraseToAnyPublisher()
   }
-  
+
+  func fetchGlobalIDs(_ fs: FetchSpecification,
+                      on queue: DispatchQueue = .global()) throws
+       -> AnyPublisher<[ GlobalID ], Error>
+  {
+    Future { promise in
+      queue.async {
+        do {
+          var gids = [ GlobalID ]()
+          try self._primaryFetchGlobalIDs(fs) { gids.append($0) }
+          promise(.success(gids))
+        }
+        catch {
+          promise(.failure(error))
+        }
+      }
+    }
+    .eraseToAnyPublisher()
+  }
+
+  func fetchObjects<S: Sequence>(with globalIDs: S,
+                                 on queue: DispatchQueue = .global())
+         throws -> AnyPublisher<Object, Error>
+         where S.Element : GlobalID
+  {
+    guard let entity = entity else { throw AccessDataSourceError.MissingEntity }
+    let gidQualifiers = globalIDs.map { entity.qualifierForGlobalID($0) }
+    let fs = ModelFetchSpecification(entity: entity,
+                                     qualifier: gidQualifiers.or())
+    return AccessDataSourcePublisher(
+      dataSource: self, fetchSpecification: fs, queue: queue
+    )
+    .eraseToAnyPublisher()
+  }
 }
 
 #endif // canImport(Combine)
