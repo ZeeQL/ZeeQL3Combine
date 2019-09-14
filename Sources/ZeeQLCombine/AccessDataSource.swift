@@ -12,6 +12,7 @@ import class  Dispatch.DispatchQueue
 import ZeeQL
 import struct Combine.AnyPublisher
 import class  Combine.Future
+import struct Combine.Fail
 
 @available(iOS 13, tvOS 13, OSX 10.15, watchOS 6, *)
 public extension AccessDataSource {
@@ -47,7 +48,7 @@ public extension AccessDataSource {
   }
 
   func fetchGlobalIDs(_ fs: FetchSpecification,
-                      on queue: DispatchQueue = .global()) throws
+                      on queue: DispatchQueue = .global())
        -> AnyPublisher<[ GlobalID ], Error>
   {
     Future { promise in
@@ -67,10 +68,14 @@ public extension AccessDataSource {
 
   func fetchObjects<S: Sequence>(with globalIDs: S,
                                  on queue: DispatchQueue = .global())
-         throws -> AnyPublisher<Object, Error>
-         where S.Element : GlobalID
+       -> AnyPublisher<Object, Error>
+       where S.Element: GlobalID
   {
-    guard let entity = entity else { throw AccessDataSourceError.MissingEntity }
+    guard let entity = entity else {
+      return Fail(error: AccessDataSourceError.MissingEntity)
+               .eraseToAnyPublisher()
+    }
+    
     let gidQualifiers = globalIDs.map { entity.qualifierForGlobalID($0) }
     let fs = ModelFetchSpecification(entity: entity,
                                      qualifier: gidQualifiers.or())
