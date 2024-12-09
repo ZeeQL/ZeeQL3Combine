@@ -69,7 +69,7 @@ public extension AccessDataSource {
   func fetchObjects<S: Sequence>(with globalIDs: S,
                                  on queue: DispatchQueue = .global())
        -> AnyPublisher<Object, Error>
-       where S.Element: GlobalID
+       where S.Element == GlobalID
   {
     guard let entity = entity else {
       return Fail(error: AccessDataSourceError.MissingEntity)
