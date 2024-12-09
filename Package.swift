@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.5
 import PackageDescription
 
 let package = Package(
@@ -9,9 +9,11 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/ZeeQL/ZeeQL3.git",
-             from: "0.8.11")
+             from: "0.9.16")
   ],
   targets: [
-    .target(name: "ZeeQLCombine", dependencies: [ "ZeeQL" ])
+    .target(name: "ZeeQLCombine", dependencies: [
+      .product(name: "ZeeQL", package: "ZeeQL3")
+    ])
   ]
 )
