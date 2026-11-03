@@ -72,7 +72,7 @@ public extension AccessDataSource {
        where S.Element == GlobalID
   {
     guard let entity = entity else {
-      return Fail(error: AccessDataSourceError.MissingEntity)
+      return Fail(error: AccessDataSourceError.missingEntity)
                .eraseToAnyPublisher()
     }
     
