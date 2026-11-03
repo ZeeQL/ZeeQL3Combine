@@ -9,7 +9,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/ZeeQL/ZeeQL3.git",
-             from: "0.9.16")
+             from: "0.9.52")
   ],
   targets: [
     .target(name: "ZeeQLCombine", dependencies: [
